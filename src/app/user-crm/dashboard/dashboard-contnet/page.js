@@ -51,16 +51,16 @@ export default function DashboardContent() {
   return (
     <div className="p-6 space-y-6">
       {/* Welcome Section */}
-      <div className="bg-gradient-to-r from-green-600 to-green-700 rounded-lg p-6 text-white">
-        <h1 className="text-2xl font-bold">Welcome back, Trader!</h1>
-        <p className="mt-2 opacity-90">Here's what's happening with your investments today.</p>
+      <div className="bg-gradient-to-r from-green-600 to-green-700 rounded-lg p-4 sm:p-6 text-white">
+        <h1 className="text-xl sm:text-2xl font-bold">Welcome back, Trader!</h1>
+        <p className="mt-2 text-sm sm:text-base opacity-90">Here's what's happening with your investments today.</p>
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         {stats.map((stat, index) => (
-          <div key={index} className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
-            <div className="flex items-center justify-between mb-4">
+          <div key={index} className="bg-white rounded-lg p-4 sm:p-6 shadow-sm hover:shadow-md transition-shadow">
+            <div className="flex items-center justify-between mb-3 sm:mb-4">
               <div className="p-2 bg-gray-100 rounded-lg">{stat.icon}</div>
               <div className={`flex items-center ${stat.isIncrease ? 'text-green-600' : 'text-red-600'}`}>
                 {stat.isIncrease ? (
@@ -68,26 +68,26 @@ export default function DashboardContent() {
                 ) : (
                   <ArrowDown className="w-4 h-4" />
                 )}
-                <span className="ml-1 text-sm font-medium">{stat.change}</span>
+                <span className="ml-1 text-xs sm:text-sm font-medium">{stat.change}</span>
               </div>
             </div>
-            <h3 className="text-gray-600 text-sm font-medium">{stat.title}</h3>
-            <p className="text-2xl font-bold text-gray-900 mt-1">{stat.value}</p>
+            <h3 className="text-gray-600 text-xs sm:text-sm font-medium">{stat.title}</h3>
+            <p className="text-lg sm:text-2xl font-bold text-gray-900 mt-1">{stat.value}</p>
           </div>
         ))}
       </div>
 
       {/* Recent Activities */}
-      <div className="bg-white rounded-lg p-6 shadow-sm">
-        <h2 className="text-lg font-bold text-gray-900 mb-4">Recent Activities</h2>
-        <div className="space-y-4">
+      <div className="bg-white rounded-lg p-4 sm:p-6 shadow-sm">
+        <h2 className="text-base sm:text-lg font-bold text-gray-900 mb-4">Recent Activities</h2>
+        <div className="space-y-3 sm:space-y-4">
           {recentActivities.map((activity) => (
-            <div key={activity.id} className="flex items-center justify-between border-b border-gray-100 pb-4 last:border-0 last:pb-0">
+            <div key={activity.id} className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-gray-100 pb-3 sm:pb-4 last:border-0 last:pb-0">
               <div>
-                <p className="font-medium text-gray-900">{activity.activity}</p>
-                <p className="text-sm text-gray-500">{activity.time}</p>
+                <p className="font-medium text-sm sm:text-base text-gray-900">{activity.activity}</p>
+                <p className="text-xs sm:text-sm text-gray-500">{activity.time}</p>
               </div>
-              <span className={`font-medium ${activity.amount.startsWith('+') ? 'text-green-600' : 'text-red-600'}`}>
+              <span className={`font-medium text-sm sm:text-base mt-1 sm:mt-0 ${activity.amount.startsWith('+') ? 'text-green-600' : 'text-red-600'}`}>
                 {activity.amount}
               </span>
             </div>
