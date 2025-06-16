@@ -6,6 +6,7 @@ import { countries } from "@/app/constants/constant";
 import { sendOtp } from "@/app/redux/slices/authSlice";
 import { userRegistration } from "@/app/redux/slices/authSlice";
 import { useRouter } from "next/navigation";
+import { FaBarcode, FaUser, FaEnvelope, FaGlobe, FaMobileAlt } from "react-icons/fa";
 
 export default function Registration() {
   const dispatch = useDispatch();
@@ -205,7 +206,7 @@ export default function Registration() {
   return (
     <>
       <div
-        className="min-h-screen flex items-center justify-center "
+        className="flex items-center justify-center min-h-screen "
         style={{
           backgroundImage: "url('/login-banner1.webp')",
           backgroundRepeat: "no-repeat",
@@ -215,10 +216,10 @@ export default function Registration() {
         {/* Modal */}
         {showModal && (
           <div
-            className="fixed inset-0 flex items-center z-1 justify-center cursor-pointer  bg-opcaity-modal"
+            className="fixed inset-0 flex items-center justify-center cursor-pointer z-1 bg-opcaity-modal"
             onClick={fnHideModelPopup}
           >
-            <div className="bg-white rounded-lg max-w-sm w-full mx-4 mb-70">
+            <div className="w-full max-w-sm mx-4 bg-white rounded-lg mb-70">
               <div className="p-6 text-center">
                 <div className="mx-auto -mt-16 w-24 h-24 rounded-full bg-[#0d0d0c] flex items-center justify-center border-4 border-black shadow-lg">
                   <img src="/favicon.webp" className="w-full p-4" alt="Logo" />
@@ -241,39 +242,42 @@ export default function Registration() {
 
         <div className="w-full max-w-[530px] mx-4 p-4">
           <form
-            className="bg-white p-8 rounded-lg shadow-md"
+            className="p-8 bg-white rounded-lg shadow-md"
             onSubmit={handleSubmit}
           >
-            <div className="text-start mb-6">
-              <img src="/logo.webp" alt="B&B Traders" className=" h-16" />
+            <div className="mb-6 text-start">
+              <img src="/logo.webp" alt="B&B Traders" className="h-16 " />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+              <div className="relative">
+                <FaBarcode className="absolute text-blue-500 -translate-y-1/2 left-3 top-1/2" />
                 <input
-                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full p-3 pl-10 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   name="ReferralId"
                   maxLength={12}
                   value={formData.ReferralId}
                   onChange={handleChange}
-                  placeholder="Enter Referral Id"
+                  placeholder="Referral ID"
                 />
               </div>
-              <div>
+              <div className="relative">
+                <FaUser className="absolute text-blue-500 -translate-y-1/2 left-3 top-1/2" />
                 <input
-                  className="w-full p-3 rounded-md bg-gray-100 focus:outline-none "
+                  className="w-full p-3 pl-10 bg-gray-100 rounded-md focus:outline-none"
                   name="SponserName"
                   value={formData.SponserName}
                   readOnly
-                  placeholder="Sponsor Name"
+                  placeholder="Referral Name"
                 />
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3">
-              <div>
+            <div className="grid grid-cols-1 gap-4 mt-3 md:grid-cols-2">
+              <div className="relative">
+                <FaGlobe className="absolute text-blue-500 -translate-y-1/2 left-3 top-1/2" />
                 <select
-                  className="w-full p-3.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full p-3.5 pl-10 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   name="CountryId"
                   value={formData.CountryId}
                   onChange={(e) => {
@@ -288,6 +292,7 @@ export default function Registration() {
                     }));
                   }}
                 >
+                  <option value="">Select Country</option>
                   {countries.map((country) => (
                     <option key={country.value} value={country.value}>
                       {country.label}
@@ -297,7 +302,7 @@ export default function Registration() {
               </div>
               <div>
                 <input
-                  className="w-full p-3 rounded-md bg-gray-100 focus:outline-none"
+                  className="w-full p-3 bg-gray-100 rounded-md focus:outline-none"
                   name="CountryCode"
                   value={formData.CountryCode}
                   readOnly
@@ -306,21 +311,23 @@ export default function Registration() {
               </div>
             </div>
 
-            <div className="mt-3">
+            <div className="relative mt-3">
+              <FaUser className="absolute text-blue-500 -translate-y-1/2 left-3 top-1/2" />
               <input
-                className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full p-3 pl-10 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 name="Name"
                 maxLength={100}
                 value={formData.Name}
                 onChange={handleChange}
-                placeholder="Full Name"
+                placeholder="NAME"
               />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3">
-              <div>
+            <div className="grid grid-cols-1 gap-4 mt-3 md:grid-cols-2">
+              <div className="relative">
+                <FaMobileAlt className="absolute text-blue-500 -translate-y-1/2 left-3 top-1/2" />
                 <input
-                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full p-3 pl-10 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   name="Mobile"
                   maxLength={10}
                   value={formData.Mobile}
@@ -328,12 +335,13 @@ export default function Registration() {
                     const value = e.target.value.replace(/\D/g, "");
                     setFormData((prev) => ({ ...prev, Mobile: value }));
                   }}
-                  placeholder="Enter Mobile No."
+                  placeholder="MOBILE"
                 />
               </div>
-              <div>
+              <div className="relative">
+                <FaEnvelope className="absolute text-blue-500 -translate-y-1/2 left-3 top-1/2" />
                 <input
-                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full p-3 pl-10 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   name="EmailId"
                   maxLength={100}
                   value={formData.EmailId}
@@ -343,7 +351,7 @@ export default function Registration() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3">
+            <div className="grid grid-cols-1 gap-4 mt-3 md:grid-cols-2">
               <div>
                 <input
                   className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -358,14 +366,14 @@ export default function Registration() {
                 <button
                   type="button"
                   onClick={fnSendOtpRegistration}
-                  className="w-full p-3 rounded-md cursor-pointer  border-1"
+                  className="w-full p-3 rounded-md cursor-pointer border-1"
                 >
                   Send OTP
                 </button>
               </div>
             </div>
 
-            <div className="mt-3 flex items-center">
+            <div className="flex items-center mt-3">
               <input
                 type="checkbox"
                 name="checkbox1"
@@ -384,9 +392,9 @@ export default function Registration() {
               Register
             </button>
 
-            <p className="text-center mt-3 text-gray-800">
+            <p className="mt-3 text-center text-gray-800">
               Already a member? <br></br>
-              <a href="/" className=" font-semibold hover:underline">
+              <a href="/" className="font-semibold hover:underline">
                 Login here
               </a>
             </p>

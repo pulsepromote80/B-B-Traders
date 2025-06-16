@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { forgotPassword } from "@/app/redux/slices/authSlice";
+import Link from "next/link";
 
 export default function ForgotPassword() {
   const dispatch = useDispatch();
@@ -41,7 +42,7 @@ export default function ForgotPassword() {
             className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 cursor-pointer bg-opcaity-modal" 
             onClick={() => setShowModal(false)}
           >
-            <div className="bg-white rounded-lg p-6 max-w-sm w-full mx-4 mb-70">
+            <div className="w-full max-w-sm p-6 mx-4 bg-white rounded-lg mb-70">
               <div className="flex justify-center mb-4">
                  <div className="mx-auto -mt-16 w-24 h-24 rounded-full bg-[#0d0d0c] flex items-center justify-center border-4 border-black shadow-lg">
                   <img src="/favicon.webp" className="w-full p-4" alt="Logo" />
@@ -50,7 +51,7 @@ export default function ForgotPassword() {
               <div className="mt-8 mb-6 text-center">
                 <p className="text-xl text-black">{modalMessage}</p>
               </div>
-              <div className="mt-6 flex justify-center">
+              <div className="flex justify-center mt-6">
                 <button
                   className="bg-[#223078] text-white px-8 py-2 rounded w-56 cursor-pointer"
                   onClick={() => setShowModal(false)}
@@ -68,16 +69,16 @@ export default function ForgotPassword() {
             className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 cursor-pointer"
             onClick={() => setShowModal2(false)}
           >
-            <div className="bg-white rounded-lg p-6 max-w-sm w-full mx-4">
+            <div className="w-full max-w-sm p-6 mx-4 bg-white rounded-lg">
               <div className="flex justify-center mb-4">
-                <div className="w-24 h-24 rounded-full bg-black flex items-center justify-center border-4 border-black shadow-sm">
+                <div className="flex items-center justify-center w-24 h-24 bg-black border-4 border-black rounded-full shadow-sm">
                   <img src="/logo.webp" alt="Logo" className="w-3/4" />
                 </div>
               </div>
               <div className="mt-8 mb-6 text-center">
                 <p id="jhbvjv" className="text-xl text-black"></p>
               </div>
-              <div className="mt-6 flex justify-center">
+              <div className="flex justify-center mt-6">
                 <button
                   className="bg-[#06976d] text-white px-8 py-2 rounded w-56"
                   onClick={() => setShowModal2(false)}
@@ -91,14 +92,14 @@ export default function ForgotPassword() {
 
         {/* Main Content */}
         <div
-          className="min-h-screen flex items-center p-4 justify-center bg-gray-100"
+          className="flex items-center justify-center min-h-screen p-4 bg-gray-100"
           style={{
             backgroundImage: "url('/login-banner1.webp')",
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
           }}
         >
-          <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+          <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-md">
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="flex justify-start mb-6">
                 <img src="/logo.webp" alt="Logo" className="h-20" />
@@ -126,9 +127,9 @@ export default function ForgotPassword() {
 
               <p className="text-center ">
                 Don't have an account?{" "}
-                <a href="/home/register" className=" ml-2 hover:underline ">
+                <Link href="/home/register" className="ml-2 hover:underline">
                   Register here
-                </a>
+                </Link>
               </p>
             </form>
           </div>

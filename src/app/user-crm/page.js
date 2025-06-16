@@ -28,7 +28,7 @@ export default function UserCRM() {
   const copyToClipboard = (text) => {
     navigator.clipboard.writeText(text).then(() => {
       const notification = document.createElement('div');
-      notification.className = 'fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded shadow-lg z-50';
+      notification.className = 'fixed z-50 px-4 py-2 text-white bg-green-500 rounded shadow-lg top-4 right-4';
       notification.textContent = 'Copied to clipboard!';
       document.body.appendChild(notification);
       setTimeout(() => {
@@ -50,7 +50,7 @@ export default function UserCRM() {
       <div className="flex flex-row  overflow-hidden ">
         {/* Trading package card */}
         <div className='flex flex-col gap-6 w-full'>
-          <div className=" w-[550px]  rounded-lg shadow-md  p-4 bg-white relative overflow-hidden">
+          <div className=" w-[550px]  rounded-lg shadow-md  p-4 bg-white relative overflow-hidden"
             <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-[#0f626a] to-[#0f626a]"></div>
             <div className="flex flex-col gap-3">
               <div className="flex items-center gap-2">
@@ -94,29 +94,28 @@ export default function UserCRM() {
             <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-green-500 to-green-600"></div>
             <div className="p-4">
               <div className="flex flex-col space-y-3 sm:space-y-0 sm:flex-row sm:gap-4">
-                <div className="flex-1 flex flex-col gap-1">
-                  <p className="text-gray-800 font-medium truncate">Level Income</p>
-                  <h6 className="text-green-600 text-lg">$0.00</h6>
+                <div className="flex flex-col flex-1 gap-1">
+                  <p className="font-medium text-gray-800 truncate">Level Income</p>
+                  <h6 className="text-lg text-green-600">$0.00</h6>
                 </div>
-                <div className="flex-1 flex flex-col gap-1">
-                  <p className="text-gray-800 font-medium truncate">Tranding Profit</p>
-                  <h6 className="text-green-600 text-lg">$0.00</h6>
+                <div className="flex flex-col flex-1 gap-1">
+                  <p className="font-medium text-gray-800 truncate">Tranding Profit</p>
+                  <h6 className="text-lg text-green-600">$0.00</h6>
                 </div>
               </div>
             </div>
           </div>
-
           <div className=" w-[550px] rounded-lg shadow-md bg-white relative overflow-hidden">
             <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-red-500 to-red-600"></div>
             <div className="p-4">
               <div className="flex flex-col space-y-3 sm:space-y-0 sm:flex-row sm:gap-4">
-                <div className="flex-1 flex flex-col gap-1">
-                  <p className="text-gray-800 font-medium truncate">Team Trading profit</p>
-                  <h6 className="text-red-600 text-lg">$0.00</h6>
+                <div className="flex flex-col flex-1 gap-1">
+                  <p className="font-medium text-gray-800 truncate">Team Trading profit</p>
+                  <h6 className="text-lg text-red-600">$0.00</h6>
                 </div>
-                <div className="flex-1 flex flex-col gap-1">
-                  <p className="text-gray-800 font-medium truncate">Royalty income</p>
-                  <h6 className="text-red-600 text-lg">$0.00</h6>
+                <div className="flex flex-col flex-1 gap-1">
+                  <p className="font-medium text-gray-800 truncate">Royalty income</p>
+                  <h6 className="text-lg text-red-600">$0.00</h6>
                 </div>
               </div>
             </div>
@@ -158,7 +157,7 @@ export default function UserCRM() {
 
             <div className="flex w-full gap-2 mt-2">
               <button
-                className="flex-1 bg-green-600 hover:bg-green-700 p-2 cursor-pointer rounded text-white flex items-center justify-center"
+                className="flex items-center justify-center flex-1 p-2 text-white bg-green-600 rounded cursor-pointer hover:bg-green-700"
                 onClick={() => copyToClipboard(referLink)}
               >
                 <FaCopy />
@@ -167,14 +166,14 @@ export default function UserCRM() {
                 href={`https://wa.me/?text=${encodeURIComponent(referLink)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 bg-green-600 hover:bg-green-700 p-2 cursor-pointer rounded text-white flex items-center justify-center animate-pulse-slow"
+                className="flex items-center justify-center flex-1 p-2 text-white bg-green-600 rounded cursor-pointer hover:bg-green-700 animate-pulse-slow"
               >
                 <FaWhatsapp />
               </Link>
               <Link
                 href="/B-B Traders-PPT.pdf"
                 target="_blank"
-                className="flex-1 bg-green-600 hover:bg-green-700 p-2 cursor-pointer rounded text-white flex items-center justify-center animate-pulse-slow"
+                className="flex items-center justify-center flex-1 p-2 text-white bg-green-600 rounded cursor-pointer hover:bg-green-700 animate-pulse-slow"
               >
                 <FaFilePdf />
               </Link>
@@ -185,18 +184,18 @@ export default function UserCRM() {
       </div>
 
       {/* Profit card */}
-      <div className="w-full order-1 lg:order-1 mt-4">
+      <div className="order-1 w-full mt-4 lg:order-1">
         <div className="grid grid-cols-12 gap-4">
           {/* Card 1 */}
           <div className="col-span-12 sm:col-span-3">
-            <div className="bg-white rounded shadow p-4">
-              <div className="flex justify-between items-center">
+            <div className="p-4 bg-white rounded shadow">
+              <div className="flex items-center justify-between">
                 <div className="bg-[#0f626a] text-white w-11 h-11 flex items-center justify-center rounded-full">
                   <FaMoneyBill />
                 </div>
               </div>
               <div className="mt-3">
-                <h4 className="text-dark font-bold text-lg">$300300.00</h4>
+                <h4 className="text-lg font-bold text-dark">$300300.00</h4>
                 <p className="font-medium text-black truncate">Income limit</p>
               </div>
             </div>
@@ -205,26 +204,26 @@ export default function UserCRM() {
           {/* Card 2 */}
           <div className="col-span-12 sm:col-span-2">
             <div className="bg-[#0f626a] text-black rounded shadow p-4 flex flex-col items-center">
-              <div className="bg-white text-primary w-12 h-12 flex items-center justify-center rounded-full">
+              <div className="flex items-center justify-center w-12 h-12 bg-white rounded-full text-primary">
                 <FaHourglassHalf />
               </div>
               <div className="mt-3 text-center">
-                <h4 className="text-white font-bold text-lg">$0.00</h4>
-                <p className="font-medium  text-white truncate">Pending limit</p>
+                <h4 className="text-lg font-bold text-white">$0.00</h4>
+                <p className="font-medium text-white truncate">Pending limit</p>
               </div>
             </div>
           </div>
 
           {/* Card 3 */}
           <div className="col-span-12 sm:col-span-2">
-            <div className="bg-white rounded shadow p-4">
-              <div className="flex justify-between items-center">
+            <div className="p-4 bg-white rounded shadow">
+              <div className="flex items-center justify-between">
                 <div className="bg-[#0f626a] text-white w-11 h-11 flex items-center justify-center rounded-full">
                   <FaWallet />
                 </div>
               </div>
               <div className="mt-3">
-                <h4 className="text-dark font-bold text-lg">$0.00</h4>
+                <h4 className="text-lg font-bold text-dark">$0.00</h4>
                 <p className="font-medium text-black truncate">Income Wallet Balance</p>
               </div>
             </div>
@@ -233,11 +232,11 @@ export default function UserCRM() {
           {/* Card 4 */}
           <div className="col-span-12 sm:col-span-3">
             <div className="bg-[#0f626a] text-white rounded shadow p-4 flex flex-col items-center">
-              <div className="bg-white text-primary w-12 h-12 flex items-center justify-center rounded-full">
+              <div className="flex items-center justify-center w-12 h-12 bg-white rounded-full text-primary">
                 <FaMoneyBills className='text-black' />
               </div>
               <div className="mt-3 text-center">
-                <h4 className="text-white font-bold text-lg">$400000.00</h4>
+                <h4 className="text-lg font-bold text-white">$400000.00</h4>
                 <p className="font-medium truncate">Topup Wallet Balance</p>
               </div>
             </div>
@@ -246,11 +245,11 @@ export default function UserCRM() {
           {/* Card 5 */}
           <div className="col-span-12 sm:col-span-2">
             <div className="bg-[#0f626a] text-white rounded shadow p-4 flex flex-col items-center">
-              <div className="bg-white text-primary w-12 h-12 flex items-center justify-center rounded-full">
+              <div className="flex items-center justify-center w-12 h-12 bg-white rounded-full text-primary">
                 <FaMoneyBillTransfer className='text-black' />
               </div>
               <div className="mt-3 text-center">
-                <h4 className="text-white font-bold text-lg">$0.00</h4>
+                <h4 className="text-lg font-bold text-white">$0.00</h4>
                 <p className="font-medium truncate">Withdrawal Fund</p>
               </div>
             </div>
@@ -262,8 +261,8 @@ export default function UserCRM() {
       <div className="flex justify-between gap-6 mt-8">
         {/* Personal Info */}
         <div className="w-full md:w-1/2">
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <h6 className="text-lg font-semibold text-gray-800 mb-4">Personal Info</h6>
+          <div className="p-6 bg-white rounded-lg shadow-md">
+            <h6 className="mb-4 text-lg font-semibold text-gray-800">Personal Info</h6>
 
             {/* Status cards */}
             <div className="flex gap-4 mb-6">
@@ -273,11 +272,11 @@ export default function UserCRM() {
                 { label: 'Pending', icon: <FaSync className="text-red-500" />, bg: 'bg-[#e14e5a]', count: '0' },
               ].map((item, i) => (
                 <div key={i} className={`flex-1 ${item.bg} text-white text-center p-4 rounded shadow`}>
-                  <div className="bg-white rounded-full w-11 h-11 mx-auto mb-2 flex items-center justify-center">
+                  <div className="flex items-center justify-center mx-auto mb-2 bg-white rounded-full w-11 h-11">
                     {item.icon}
                   </div>
                   <p className="truncate">{item.label}</p>
-                  <p className="text-sm mt-1">{item.count}</p>
+                  <p className="mt-1 text-sm">{item.count}</p>
                 </div>
               ))}
             </div>
@@ -294,8 +293,8 @@ export default function UserCRM() {
               ].map((item, i) => (
                 <li key={i} className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="bg-gray-100 p-2 rounded">{item.icon}</div>
-                    <p className="text-sm text-gray-700 font-medium">{item.label}</p>
+                    <div className="p-2 bg-gray-100 rounded">{item.icon}</div>
+                    <p className="text-sm font-medium text-gray-700">{item.label}</p>
                   </div>
                   <b>{item.value || '-'}</b>
                 </li>
@@ -306,8 +305,8 @@ export default function UserCRM() {
 
         {/* Business Info */}
         <div className="w-full md:w-1/2">
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <h6 className="text-lg font-semibold text-gray-800 mb-4">Business Info</h6>
+          <div className="p-6 bg-white rounded-lg shadow-md">
+            <h6 className="mb-4 text-lg font-semibold text-gray-800">Business Info</h6>
 
             {/* Status cards */}
             <div className="flex gap-4 mb-6">
@@ -317,11 +316,11 @@ export default function UserCRM() {
                 { label: 'Pending', icon: <FaSync className="text-red-500" />, bg: 'bg-[#e14e5a]', count: '0' },
               ].map((item, i) => (
                 <div key={i} className={`flex-1 ${item.bg} text-white text-center p-4 rounded shadow`}>
-                  <div className="bg-white rounded-full w-11 h-11 mx-auto mb-2 flex items-center justify-center">
+                  <div className="flex items-center justify-center mx-auto mb-2 bg-white rounded-full w-11 h-11">
                     {item.icon}
                   </div>
                   <p className="truncate">{item.label}</p>
-                  <p className="text-sm mt-1">{item.count}</p>
+                  <p className="mt-1 text-sm">{item.count}</p>
                 </div>
               ))}
             </div>
@@ -336,8 +335,8 @@ export default function UserCRM() {
               ].map((item, i) => (
                 <li key={i} className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="bg-gray-100 p-2 rounded">{item.icon}</div>
-                    <p className="text-sm text-gray-700 font-medium">{item.label}</p>
+                    <div className="p-2 bg-gray-100 rounded">{item.icon}</div>
+                    <p className="text-sm font-medium text-gray-700">{item.label}</p>
                   </div>
                   <b>{item.value}</b>
                 </li>
@@ -348,9 +347,9 @@ export default function UserCRM() {
       </div>
 
       {/* Marketing Tools  */}
-      <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 my-4">
+      <div className="grid grid-cols-1 gap-4 my-4 xl:grid-cols-2">
         {/* FX Pricing Widget */}
-        <div className="rounded-2xl shadow-md overflow-hidden bg-white">
+        <div className="overflow-hidden bg-white shadow-md rounded-2xl">
           <div className="p-4">
             <iframe
               src="https://fxpricing.com/fx-widget/market-currency-rates-widget.php?id=1,2,3,5,14,20&amp;click_target=blank&amp;theme=light&amp;tm-cr=FFFFFF&amp;hr-cr=00000013&amp;by-cr=28A745&amp;sl-cr=DC3545&amp;flags=circle&amp;value_alignment=center&amp;column=price,ask,bid,chg,chg_per,spread,time&amp;lang=en&amp;font=Arial, sans-serif"
@@ -363,7 +362,7 @@ export default function UserCRM() {
         </div>
 
         {/* TradingView Widget */}
-        <div className="rounded-2xl shadow-md overflow-hidden bg-white">
+        <div className="overflow-hidden bg-white shadow-md rounded-2xl">
           <div className="p-4 h-[300px]">
             <iframe
               scrolling="no"

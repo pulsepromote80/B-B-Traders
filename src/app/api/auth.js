@@ -8,11 +8,18 @@ const isLoggedIn = () => {
 
 export const doLogin = (data) => {
   if (data?.data === undefined) return false;
-  Cookies.set("data", JSON.stringify(data.data), {
+
+  const userData = data.data;
+  const userId = userData?.Id;
+  Cookies.set("data", JSON.stringify(userData), {
     expires: 7,
     secure: true,
     sameSite: "Strict",
   });
+  if (userId) {
+    setUserId(userId); // This uses your existing helper function
+  }
+
   window.dispatchEvent(new Event("userLoggedIn"));
   return true;
 };
@@ -112,6 +119,16 @@ export const getUserId = () => {
 export const getRequest = async (endpoint) => {
   try {
     const response = await axios.get(`${BASE_URL}${endpoint}`);
+    return response.data;
+  } catch (error) {
+    console.error(" API Call Failed:", error);
+    throw error;
+  }
+};
+
+export const postRequestWithLoginId = async (endpoint, data) => {
+  try {
+    const response = await axios.post(`${BASE_URL}${endpoint}`);
     return response.data;
   } catch (error) {
     console.error(" API Call Failed:", error);
