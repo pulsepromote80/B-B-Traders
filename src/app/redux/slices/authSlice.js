@@ -14,7 +14,8 @@ const API_ENDPOINTS = {
   FORGOT_PASSWORD: "/Authentication/forgotPassword",
   UPDATE_USER_PROFILE: "/Authentication/updateUserProfile",
   SEND_OTP: "/Authentication/sendOtp",
-  GET_USER_KYC_BY_LOGIN_ID: "/Authentication/GetUserKycByLoginId"
+  GET_USER_KYC_BY_LOGIN_ID: "/Authentication/GetUserKycByLoginId",
+  UPDATE_PASSWORD: "/Authentication/changePassword"
 };
 
 
@@ -101,6 +102,23 @@ export const updateUserProfile = createAsyncThunk(
     } catch (error) {
       console.error("API Error:", error.response?.data || error.message);
       return rejectWithValue(error.response?.data?.message || "Failed to update password");
+    }
+  }
+);
+
+export const updatePassword = createAsyncThunk(
+
+  "auth/updatePassword",
+  async (data, { rejectWithValue }) => {
+    try {
+      const response = await postRequestWithToken(
+        API_ENDPOINTS.UPDATE_PASSWORD,
+        data
+      );
+      return response;
+    } catch (error) {
+      console.error("API Error:", error.response?.data || error.message);
+      return rejectWithValue(error.response?.data?.message || "Failed to UPDATE password");
     }
   }
 );
@@ -251,6 +269,20 @@ export const getUserKycByLoginId = createAsyncThunk(
       })
 
       .addCase(getUserKycByLoginId.rejected, (state, action) => {
+         state.loading = false;
+        state.error = action.payload;
+      })
+      
+      .addCase(updatePassword.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(updatePassword.fulfilled, (state, action) => {
+        state.loading = false;
+        state.authData = action.payload;
+        state.error = null;
+      })    
+      .addCase(updatePassword.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })
