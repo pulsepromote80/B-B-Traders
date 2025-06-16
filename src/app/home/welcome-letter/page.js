@@ -7,7 +7,6 @@ import { useSelector } from 'react-redux';
     const router = useRouter();
 
     const data = useSelector((state) => state.auth.userData);
-    console.log("Welcome Letter Data:", data);
     return (
         <div className="min-h-screen bg-black flex items-center justify-center py-4 px-4" style={{
             backgroundImage: "url('/login-banner1.webp')",

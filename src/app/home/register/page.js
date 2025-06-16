@@ -56,7 +56,6 @@ export default function Registration() {
 
     if (name === "ReferralId") {
       try {
-        console.log("value", value);
         const response = await dispatch(
           getRefreralIdByUserEmail(value)
         ).unwrap();

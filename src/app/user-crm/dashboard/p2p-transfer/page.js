@@ -52,8 +52,6 @@ const P2PTransfer = () => {
     });
 
     const fnCheckSponserName = () => {
-        // Implement your logic here
-        console.log('Checking sponsor name');
     };
 
     const limitInputLength = (input, maxLength) => {
@@ -69,12 +67,11 @@ const P2PTransfer = () => {
 
     const fnForTransferFund = () => {
         // Implement transfer fund logic
-        console.log('Transferring funds');
+       
     };
 
     const fnSendOTPTrading = () => {
         // Implement OTP sending logic
-        console.log('Sending OTP');
     };
 
     return (

@@ -19,17 +19,14 @@ export default function FundTransfer() {
     const [globalFilter, setGlobalFilter] = useState('');
 
     const handleSendOTP = () => {
-        console.log('Send OTP');
         setMessage('OTP sent to your email');
     };
 
     const handleTransfer = () => {
-        console.log(`Transfer ${amount} with OTP ${otp}`);
         setMessage('Transfer successful!');
     };
 
     const handleRefresh = () => {
-        console.log('Refresh wallet');
         setMessage('Refreshed wallet details');
     };
 

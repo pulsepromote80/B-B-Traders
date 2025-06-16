@@ -13,7 +13,6 @@ export default function BusinessHistory() {
       alert("Please select both dates.");
       return false;
     }
-    console.log("Submitted:", { fromDate, toDate });
   };
 
   return (

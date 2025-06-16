@@ -7,6 +7,7 @@ import { appLogin } from "../redux/slices/authSlice";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import { numberWords } from "@/utils/clientUtils";
 import { FaEnvelope, FaKey } from "react-icons/fa";
 
 export default function Login() {
@@ -14,32 +15,58 @@ export default function Login() {
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [captcha, setCaptcha] = useState("");
   const [userInput, setUserInput] = useState({
     userid: "",
     password: "",
-    captchaInput: "",
     rememberMe: false,
+    captcha: "",
   });
   const [modal, setModal] = useState({
     show: false,
     message: "",
   });
+  const [captchaValue, setCaptchaValue] = useState("");
+  const [audioCaptcha, setAudioCaptcha] = useState(null);
 
-  // Only run after component mounts on client
+  const generateCaptcha = () => {
+    const chars = "0123456789";
+    let captcha = "";
+    for (let i = 0; i < 4; i++) {
+      captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    setCaptchaValue(captcha);
+    generateAudioCaptcha(captcha);
+  };
+
+  const generateAudioCaptcha = (captcha) => {
+    const speechSynthesis = window.speechSynthesis;
+    const utterance = new SpeechSynthesisUtterance();
+    
+    const spokenText = captcha.split('').map(digit => numberWords[digit]).join(' ');
+    
+    utterance.text = spokenText;
+    utterance.rate = 0.8; 
+    utterance.pitch = 1;
+    
+    setAudioCaptcha({
+      utterance,
+      speechSynthesis
+    });
+  };
+
+  const playAudioCaptcha = () => {
+    if (!audioCaptcha) return;
+    
+    const { utterance, speechSynthesis } = audioCaptcha;
+    speechSynthesis.cancel(); 
+    speechSynthesis.speak(utterance);
+  };
+
   useEffect(() => {
     setMounted(true);
-    // Generate random captcha code
-    const a = Math.ceil(Math.random() * 9) + "";
-    const b = Math.ceil(Math.random() * 9) + "";
-    const c = Math.ceil(Math.random() * 9) + "";
-    const d = Math.ceil(Math.random() * 9) + "";
-    const e = Math.ceil(Math.random() * 9) + "";
-    const code = a + b + c + d + e;
-    setCaptcha(code);
+    generateCaptcha();
   }, []);
 
-  // Don't render anything until mounted
   if (!mounted) {
     return null;
   }
@@ -56,10 +83,6 @@ export default function Login() {
     }));
   };
 
-  const validCaptcha = () => {
-    return userInput.captchaInput === captcha;
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -69,10 +92,8 @@ export default function Login() {
       errors = "Please Enter User Id";
     } else if (!userInput.password) {
       errors = "Please Enter Password.";
-    } else if (!userInput.captchaInput) {
-      errors = "Please Enter Captcha Code.";
-    } else if (!validCaptcha()) {
-      errors = "The CAPTCHA Code Does Not Match.";
+    } else if (userInput.captcha !== captchaValue) {
+      errors = "Please enter correct captcha.";
     }
 
     if (errors) {
@@ -83,18 +104,25 @@ export default function Login() {
       return false;
     }
 
-    const data = {
-      username: userInput.userid,
-      password: userInput.password,
-    };
-    
-    const result = await dispatch(appLogin(data)).unwrap();
-    if (result.statusCode === 200) {
-      router.push("/user-crm")
-    }else if(result.statusCode === 409){
-       setModal({
+    try {
+      const data = {
+        username: userInput.userid,
+        password: userInput.password,
+      };
+
+      const result = await dispatch(appLogin(data)).unwrap();
+      if (result.statusCode === 200) {
+        router.push("/user-crm")
+      } else if (result.statusCode === 409) {
+        setModal({
+          show: true,
+          message: result.message,
+        });
+      }
+    } catch (error) {
+      setModal({
         show: true,
-        message: result.message,
+        message: "Login failed. Please try again.",
       });
     }
   };
@@ -105,6 +133,7 @@ export default function Login() {
       message: "",
     });
   };
+
 
   return (
     <>
@@ -186,7 +215,23 @@ export default function Login() {
                 )}
               </div>
             </div>
+            <div className="flex items-center gap-4 mb-4">
 
+              <input
+                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                name="captcha"
+                placeholder="Enter Captcha"
+                type="text"
+                value={userInput.captcha}
+                onChange={handleInputChange}
+              />
+
+              <div className="flex items-center justify-center w-32 h-12 bg-gray-100 rounded-md relative overflow-hidden">
+                <div className="absolute inset-0 bg-[url('/cross-pattern.svg')] opacity-40"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gray-200 to-transparent opacity-20"></div>
+                <span className="text-2xl font-bold tracking-wider text-gray-800 relative z-10">
+                  {captchaValue}
+                </span>
             <div className="grid items-end grid-cols-1 gap-2 md:grid-cols-7">
               <div className="md:col-span-4">
                 <input
@@ -205,6 +250,21 @@ export default function Login() {
                   {captcha}
                 </div>
               </div>
+              <button
+                type="button"
+                onClick={generateCaptcha}
+                className="px-2 py-1 text-sm text-gray-600 hover:text-gray-800"
+              >
+                ↻
+              </button>
+              <button
+                type="button"
+                onClick={playAudioCaptcha}
+                className="px-2 py-1 text-sm text-gray-600 hover:text-gray-800"
+                title="Play Audio Captcha"
+              >
+                🔊
+              </button>
             </div>
 
             <div className="flex items-center justify-between">

@@ -5,13 +5,10 @@ import UserTable from '../user-Table/page';
 export default function PersonalDownTeamForm() {
   const fnchangeIncomeType = () => {
     // Implement your onchange logic here
-    console.log('Status changed');
   };
 
   const fnValidate = () => {
     // Implement your validation logic here
-    console.log('Form submitted');
-    // Return false to prevent actual submission
     return false;
   };
 

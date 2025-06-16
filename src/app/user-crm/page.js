@@ -4,7 +4,7 @@ import { FaCopy, FaWhatsapp, FaFilePdf } from 'react-icons/fa';
 import { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import { FaMoneyBill, FaHourglassHalf, FaWallet, FaMoneyBills, FaMoneyBillTransfer } from "react-icons/fa6";
-
+import Link from 'next/link';
 import {
   FaHourglassStart,
   FaCircleNotch,
@@ -46,11 +46,11 @@ export default function UserCRM() {
 
   const referLink = 'https://bnbtraders.io/home/Register?REF=BB100000';
   return (
-    <div className="w-full p-4">
-      <div className="flex flex-col gap-6 overflow-hidden lg:flex-row">
+    <div className="p-4 w-full">
+      <div className="flex flex-row  overflow-hidden ">
         {/* Trading package card */}
-        <div className='flex flex-col gap-6'>
-          <div className="relative max-w-lg p-4 overflow-hidden bg-white rounded-lg shadow-md ">
+        <div className='flex flex-col gap-6 w-full'>
+          <div className=" w-[550px]  rounded-lg shadow-md  p-4 bg-white relative overflow-hidden"
             <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-[#0f626a] to-[#0f626a]"></div>
             <div className="flex flex-col gap-3">
               <div className="flex items-center gap-2">
@@ -90,8 +90,8 @@ export default function UserCRM() {
           </div>
 
           {/* Income and profit cards */}
-          <div className="relative max-w-lg overflow-hidden bg-white rounded-lg shadow-md ">
-            <div className="absolute top-0 bottom-0 left-0 w-1 bg-gradient-to-b from-green-500 to-green-600"></div>
+          <div className=" w-[550px] rounded-lg shadow-md bg-white relative overflow-hidden">
+            <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-green-500 to-green-600"></div>
             <div className="p-4">
               <div className="flex flex-col space-y-3 sm:space-y-0 sm:flex-row sm:gap-4">
                 <div className="flex flex-col flex-1 gap-1">
@@ -105,9 +105,8 @@ export default function UserCRM() {
               </div>
             </div>
           </div>
-
-          <div className="relative max-w-lg overflow-hidden bg-white rounded-lg shadow-md ">
-            <div className="absolute top-0 bottom-0 left-0 w-1 bg-gradient-to-b from-red-500 to-red-600"></div>
+          <div className=" w-[550px] rounded-lg shadow-md bg-white relative overflow-hidden">
+            <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-red-500 to-red-600"></div>
             <div className="p-4">
               <div className="flex flex-col space-y-3 sm:space-y-0 sm:flex-row sm:gap-4">
                 <div className="flex flex-col flex-1 gap-1">
@@ -124,7 +123,7 @@ export default function UserCRM() {
 
         </div>
         {/* Referral card */}
-        <div className="relative bg-[#cfe0e1] rounded-lg p-4 max-h-[300px] max-w-sm overflow-hidden">
+        <div className="relative bg-[#cfe0e1] rounded-lg p-4 max-h-[300px] w-[600px]  overflow-hidden">
 
           <Image
             alt="Background Vector"
@@ -150,10 +149,10 @@ export default function UserCRM() {
           />
 
           <div className="mt-4 flex flex-col items-center bg-[#ebf2f3] p-3 rounded-lg text-black font-bold">
-            <p className="mb-2 text-sm break-words text-start">
-              <a href={referLink} target="_blank" rel="noopener noreferrer" className="underline">
+            <p className="text-sm break-words text-start mb-2">
+              <Link href={referLink} target="_blank" rel="noopener noreferrer" className="underline">
                 {referLink}
-              </a>
+              </Link>
             </p>
 
             <div className="flex w-full gap-2 mt-2">
@@ -163,21 +162,21 @@ export default function UserCRM() {
               >
                 <FaCopy />
               </button>
-              <button
+              <Link
                 href={`https://wa.me/?text=${encodeURIComponent(referLink)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center flex-1 p-2 text-white bg-green-600 rounded cursor-pointer hover:bg-green-700 animate-pulse-slow"
               >
                 <FaWhatsapp />
-              </button>
-              <button
+              </Link>
+              <Link
                 href="/B-B Traders-PPT.pdf"
                 target="_blank"
                 className="flex items-center justify-center flex-1 p-2 text-white bg-green-600 rounded cursor-pointer hover:bg-green-700 animate-pulse-slow"
               >
                 <FaFilePdf />
-              </button>
+              </Link>
             </div>
           </div>
         </div>

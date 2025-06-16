@@ -49,7 +49,6 @@ export default function UpdateProfileForm() {
     setLoading(true);
     try {
       const response = await dispatch(sendOtp({ email: formData.email })).unwrap();
-      console.log(response);
 
       if (response.statusCode === 200) {
         setModalMessage(response.message)
@@ -77,8 +76,6 @@ export default function UpdateProfileForm() {
         cityName: formData.country,
         walletAdressBep20: formData.bep20Wallet,
       }
-
-      console.log(data)
       const result = await dispatch(updateUserProfile(data)).unwrap();
       if (result.statusCode === 200) {
         setModalMessage(result.message)
