@@ -5,6 +5,8 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { appLogin } from "../redux/slices/authSlice";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
+import Image from "next/image";
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -142,9 +144,9 @@ export default function Login() {
         <div className="w-full max-w-[530px] mx-4 bg-white rounded-3xl shadow-lg px-10 py-10">
           <form onSubmit={handleSubmit} className="space-y-[22px]">
             <div className="flex justify-start">
-              <a href="#">
-                <img src="/logo.webp" alt="Logo" className="h-22" />
-              </a>
+              <Link href="/">
+                <Image src="/logo.webp" alt="Logo" width={150} height={150} />
+              </Link>
             </div>
 
             <div>
