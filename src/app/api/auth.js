@@ -7,13 +7,19 @@ const isLoggedIn = () => {
 };
 
 export const doLogin = (data) => {
-  console.log(data)
   if (data?.data === undefined) return false;
-  Cookies.set("data", JSON.stringify(data.data), {
+
+  const userData = data.data;
+  const userId = userData?.Id;
+  Cookies.set("data", JSON.stringify(userData), {
     expires: 7,
     secure: true,
     sameSite: "Strict",
   });
+  if (userId) {
+    setUserId(userId); // This uses your existing helper function
+  }
+
   window.dispatchEvent(new Event("userLoggedIn"));
   return true;
 };
