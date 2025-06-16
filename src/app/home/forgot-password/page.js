@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { forgotPassword } from "@/app/redux/slices/authSlice";
+import Link from "next/link";
 
 export default function ForgotPassword() {
   const dispatch = useDispatch();
@@ -126,9 +127,9 @@ export default function ForgotPassword() {
 
               <p className="text-center ">
                 Don't have an account?{" "}
-                <a href="/home/register" className="ml-2  hover:underline">
+                <Link href="/home/register" className="ml-2 hover:underline">
                   Register here
-                </a>
+                </Link>
               </p>
             </form>
           </div>
