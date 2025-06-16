@@ -62,9 +62,6 @@ export const userRegistration = createAsyncThunk(
 export const getRefreralIdByUserEmail = createAsyncThunk(
   "auth/getRefreralIdByUserEmail",
   async (data, { rejectWithValue }) => {
-
-    
-    console.log("data",data)
     try {
       const response = await getRequest(
         `${API_ENDPOINTS.GET_REFREAL_ID_BY_USER_EMAIL}?userEmail=${data}`

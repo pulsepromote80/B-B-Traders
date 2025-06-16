@@ -7,7 +7,6 @@ const isLoggedIn = () => {
 };
 
 export const doLogin = (data) => {
-  console.log(data)
   if (data?.data === undefined) return false;
   Cookies.set("data", JSON.stringify(data.data), {
     expires: 7,
@@ -275,7 +274,6 @@ export const postRequestWithToken = async (endpoint, data) => {
     const response = await axios.post(`${BASE_URL}${endpoint}`, data, {
       headers,
     });
-    console.log("Response:", response);
     return response.data;
   } catch (error) {
     console.error(" API Call Failed:", error.response?.data || error.message);
