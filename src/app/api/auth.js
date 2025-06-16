@@ -126,6 +126,16 @@ export const getRequest = async (endpoint) => {
   }
 };
 
+export const postRequestWithLoginId = async (endpoint, data) => {
+  try {
+    const response = await axios.post(`${BASE_URL}${endpoint}`);
+    return response.data;
+  } catch (error) {
+    console.error(" API Call Failed:", error);
+    throw error;
+  }
+};
+
 export const getRequestUserId = async (endpoint) => {
   try {
     const token = getToken();
@@ -281,7 +291,6 @@ export const postRequestWithToken = async (endpoint, data) => {
     const response = await axios.post(`${BASE_URL}${endpoint}`, data, {
       headers,
     });
-    console.log("Response:", response);
     return response.data;
   } catch (error) {
     console.error(" API Call Failed:", error.response?.data || error.message);

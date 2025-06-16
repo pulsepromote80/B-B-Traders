@@ -7,6 +7,7 @@ import { appLogin } from "../redux/slices/authSlice";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import { FaEnvelope, FaKey } from "react-icons/fa";
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -110,10 +111,10 @@ export default function Login() {
       {/* Modal */}
       {modal.show && (
         <div
-          className="fixed inset-0 flex items-center z-50 justify-center cursor-pointer bg-opcaity-modal"
+          className="fixed inset-0 z-50 flex items-center justify-center cursor-pointer bg-opcaity-modal"
           onClick={hideModal}
         >
-          <div className="bg-white rounded-lg max-w-sm w-full mx-4 mb-70">
+          <div className="w-full max-w-sm mx-4 bg-white rounded-lg mb-70">
             <div className="p-6 text-center">
               <div className="mx-auto -mt-20 w-24 h-24 rounded-full bg-[#0d0d0c] flex items-center justify-center border-4 border-black shadow-lg">
                 <img src="/favicon.webp" className="w-full p-4" alt="Logo" />
@@ -134,7 +135,7 @@ export default function Login() {
         </div>
       )}
       <div
-        className="min-h-screen flex items-center justify-center bg-gray-100"
+        className="flex items-center justify-center min-h-screen bg-gray-100"
         style={{
           backgroundImage: "url('/login-banner1.webp')",
           backgroundRepeat: "no-repeat",
@@ -149,11 +150,12 @@ export default function Login() {
               </Link>
             </div>
 
-            <div>
+            <div className="relative">
+              <FaEnvelope className="absolute text-blue-500 -translate-y-1/2 left-3 top-1/2" />
               <input
-                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-3 pl-10 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 name="userid"
-                placeholder="Enter UserId"
+                placeholder="EMAIL or USERNAME"
                 type="text"
                 value={userInput.userid}
                 onChange={handleInputChange}
@@ -161,10 +163,11 @@ export default function Login() {
             </div>
 
             <div className="relative">
+              <FaKey className="absolute text-blue-500 -translate-y-1/2 left-3 top-1/2" />
               <input
-                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-3 pl-10 pr-10 text-black border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 name="password"
-                placeholder="Enter Password"
+                placeholder="Password"
                 type={showPassword ? "text" : "password"}
                 value={userInput.password}
                 onChange={handleInputChange}
@@ -172,24 +175,24 @@ export default function Login() {
               <div className="absolute inset-y-0 right-0 flex items-center pr-3">
                 {showPassword ? (
                   <FaEyeSlash
-                    className="text-gray-500 cursor-pointer"
+                    className="text-blue-500 cursor-pointer"
                     onClick={togglePasswordVisibility}
                   />
                 ) : (
                   <FaEye
-                    className="text-gray-500 cursor-pointer"
+                    className="text-blue-500 cursor-pointer"
                     onClick={togglePasswordVisibility}
                   />
                 )}
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-7 gap-2 items-end">
+            <div className="grid items-end grid-cols-1 gap-2 md:grid-cols-7">
               <div className="md:col-span-4">
                 <input
                   type="text"
                   placeholder="Enter Captcha"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-3 text-black border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   name="captchaInput"
                   value={userInput.captchaInput}
                   onChange={handleInputChange}
@@ -197,7 +200,7 @@ export default function Login() {
               </div>
               <div className="md:col-span-3">
                 <div
-                  className="font-bold py-2  px-4 flex items-center justify-center text-xl rounded border border-gray-300 bg-transparent text-black select-none"
+                  className="flex items-center justify-center px-4 py-2 text-xl font-bold text-black bg-transparent border border-gray-300 rounded select-none"
                 >
                   {captcha}
                 </div>
@@ -232,7 +235,7 @@ export default function Login() {
               Sign In
             </button>
 
-            <div className="text-black text-center">
+            <div className="text-center text-black">
               Don't have an account yet? <br></br>
               <a
                 href="/home/register"

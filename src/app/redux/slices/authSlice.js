@@ -4,7 +4,7 @@ import {
   getRequest,
   postRequestWithToken,
   setToken,
-  setUserId,
+  setUserId,postRequestWithLoginId
 } from "../../api/auth";
 
 const API_ENDPOINTS = {
@@ -14,6 +14,7 @@ const API_ENDPOINTS = {
   FORGOT_PASSWORD: "/Authentication/forgotPassword",
   UPDATE_USER_PROFILE: "/Authentication/updateUserProfile",
   SEND_OTP: "/Authentication/sendOtp",
+  GET_USER_KYC_BY_LOGIN_ID: "/Authentication/GetUserKycByLoginId",
   UPDATE_PASSWORD: "/Authentication/changePassword"
 };
 
@@ -49,8 +50,6 @@ export const userRegistration = createAsyncThunk(
         API_ENDPOINTS.USER_REGISTRATION,
         data
       );
-
-      console.log("response", response)
       return response;
     } catch (error) {
       console.error("API Error:", error.response?.data || error.message);
@@ -59,13 +58,9 @@ export const userRegistration = createAsyncThunk(
   }
 );
 
-
 export const getRefreralIdByUserEmail = createAsyncThunk(
   "auth/getRefreralIdByUserEmail",
   async (data, { rejectWithValue }) => {
-
-    
-    console.log("data",data)
     try {
       const response = await getRequest(
         `${API_ENDPOINTS.GET_REFREAL_ID_BY_USER_EMAIL}?userEmail=${data}`
@@ -141,6 +136,21 @@ export const sendOtp = createAsyncThunk(
     } catch (error) {
       console.error("API Error:", error.response?.data || error.message);
       return rejectWithValue(error.response?.data?.message || "Failed to send OTP");
+    }
+  }
+);
+
+export const getUserKycByLoginId = createAsyncThunk(
+  "auth/getUserKycByLoginId",
+  async (data, { rejectWithValue }) => {
+    try {
+      const response = await postRequestWithLoginId(
+        `${API_ENDPOINTS.GET_USER_KYC_BY_LOGIN_ID}?loginId=${data}`
+      );
+      return response;
+    } catch (error) {
+      console.error("API Error:", error.response?.data || error.message);
+      return rejectWithValue(errorMessage);
     }
   }
 );
@@ -248,6 +258,21 @@ export const sendOtp = createAsyncThunk(
         state.error = action.payload;
       })
 
+       .addCase(getUserKycByLoginId.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getUserKycByLoginId.fulfilled, (state, action) => {
+        state.loading = false;
+        state.authData = action.payload;
+        state.error = null;
+      })
+
+      .addCase(getUserKycByLoginId.rejected, (state, action) => {
+         state.loading = false;
+        state.error = action.payload;
+      })
+      
       .addCase(updatePassword.pending, (state) => {
         state.loading = true;
         state.error = null;
