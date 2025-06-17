@@ -50,7 +50,7 @@ export default function UserCRM() {
       <div className="flex flex-row  overflow-hidden ">
         {/* Trading package card */}
         <div className='flex flex-col gap-6 w-full'>
-          <div className=" w-[550px]  rounded-lg shadow-md  p-4 bg-white relative overflow-hidden"
+          <div className=" w-[550px]  rounded-lg shadow-md  p-4 bg-white relative overflow-hidden">
             <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-[#0f626a] to-[#0f626a]"></div>
             <div className="flex flex-col gap-3">
               <div className="flex items-center gap-2">
