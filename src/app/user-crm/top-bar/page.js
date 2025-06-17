@@ -32,9 +32,14 @@ export default function Topbar() {
     }, []);
 
     return (
-        <div className="flex items-center justify-between bg-white p-7 shadow-sm sticky top-0 z-10">
-            <div className="text-sm font-medium border border-black rounded-md p-2">User ID: <span className="font-bold">{loginId}</span></div>
-            <div className="flex items-center space-x-4">
+        <div className="flex items-center justify-between bg-white p-4 md:p-7 shadow-sm sticky top-0 z-10">
+            {/* User ID - hidden below 985px */}
+            <div className="text-sm font-medium border border-black rounded-md p-2 hidden min-[985px]:block">
+                User ID: <span className="font-bold">{loginId}</span>
+            </div>
+            
+            {/* Right-aligned items */}
+            <div className="ml-auto flex items-center space-x-4">
                 <Image 
                     src={Notification} 
                     alt="Notification" 
@@ -53,7 +58,7 @@ export default function Topbar() {
                                 alt="User Avatar" 
                                 width={48} 
                                 height={48} 
-                                className=" w-auto rounded-full" 
+                                className="w-auto rounded-full" 
                             />
                         </div>
                         <div className="flex flex-col">
