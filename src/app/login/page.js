@@ -7,7 +7,7 @@ import { appLogin } from "../redux/slices/authSlice";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { numberWords } from "@/utils/clientUtils";
+import { numberWords } from "@/app/utils/clientUtils";
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -120,7 +120,7 @@ export default function Login() {
           className="fixed inset-0 z-50 flex items-center justify-center cursor-pointer bg-opcaity-modal"
           onClick={hideModal}
         >
-          <div className="w-full max-w-sm mx-4 bg-white rounded-lg mb-70">
+          <div className="w-full max-w-sm mx-4 bg-white rounded-lg mb-70 sm:max-w-md md:max-w-lg">
             <div className="p-6 text-center">
               <div className="mx-auto -mt-20 w-24 h-24 rounded-full bg-[#0d0d0c] flex items-center justify-center border-4 border-black shadow-lg">
                 <img src="/favicon.webp" className="w-full p-4" alt="Logo" />
@@ -142,15 +142,12 @@ export default function Login() {
       )}
 
       <div
-        className="flex items-center justify-center min-h-screen bg-gray-100"
-        style={{
-          backgroundImage: "url('/login-banner1.webp')",
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-        }}
+        className="flex items-center justify-center min-h-screen bg-gray-100 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: "url('/login-banner1.webp')" }}
       >
-        <div className="w-full max-w-[530px] mx-4 bg-white rounded-3xl shadow-lg px-10 py-10">
-          <form onSubmit={handleSubmit} className="space-y-[22px]">
+
+        <div className="w-full max-w-[530px] mx-4 bg-white rounded-3xl shadow-lg px-6 sm:px-8 md:px-10 py-8 sm:py-10">
+          <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-[22px]">
             <div className="flex justify-start">
               <Link href="/">
                 <Image src="/logo.webp" alt="Logo" width={150} height={150} />
@@ -194,16 +191,16 @@ export default function Login() {
               </div>
             </div>
 
-            <div className="flex items-center gap-4 mb-4">
+            <div className="flex flex-wrap gap-2 items-center">
               <input
-                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="flex-1 min-w-[140px] px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 name="captcha"
                 placeholder="Enter Captcha"
                 type="text"
                 value={userInput.captcha}
                 onChange={handleInputChange}
               />
-              <div className="relative flex items-center justify-center w-32 h-12 bg-gray-100 rounded-md">
+              <div className="relative flex items-center justify-center w-28 h-10 sm:w-32 sm:h-12 bg-gray-100 rounded-md">
                 <div className="absolute inset-0 bg-[url('/cross-pattern.svg')] opacity-40"></div>
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gray-200 to-transparent opacity-20"></div>
                 <span className="text-2xl font-bold tracking-wider text-gray-800 relative z-10">
@@ -227,7 +224,7 @@ export default function Login() {
               </button>
             </div>
 
-            <div className="flex items-center justify-between">
+            <div className="flex flex-wrap items-center justify-between gap-3">
               <div className="flex items-center">
                 <input
                   className="w-6 h-6 mr-2"
@@ -236,13 +233,13 @@ export default function Login() {
                   checked={userInput.rememberMe}
                   onChange={handleInputChange}
                 />
-                <label htmlFor="rememberMe" className="text-black whitespace-nowrap">
+                <label htmlFor="rememberMe" className="text-black whitespace-nowrap text-sm sm:text-base">
                   Remember me
                 </label>
               </div>
-              <a href="/home/forgot-password" className="text-black">
+              <Link href="/home/forgot-password" className="text-black text-sm sm:text-base">
                 Forget Password?
-              </a>
+              </Link>
             </div>
 
             <button
@@ -252,15 +249,15 @@ export default function Login() {
               Sign In
             </button>
 
-            <div className="text-center text-black">
+            <div className="text-center text-sm text-black sm:text-base">
               Don't have an account yet?
               <br />
-              <a
+              <Link
                 href="/home/register"
                 className="font-bold text-black hover:underline"
               >
                 Register Now
-              </a>
+              </Link>
             </div>
           </form>
         </div>

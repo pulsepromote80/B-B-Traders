@@ -92,13 +92,9 @@ export default function ForgotPassword() {
 
         {/* Main Content */}
         <div
-          className="flex items-center justify-center min-h-screen p-4 bg-gray-100"
-          style={{
-            backgroundImage: "url('/login-banner1.webp')",
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "cover",
-          }}
-        >
+        className="flex items-center justify-center min-h-screen bg-gray-100 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: "url('/login-banner1.webp')" }}
+      >
           <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-md">
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="flex justify-start mb-6">

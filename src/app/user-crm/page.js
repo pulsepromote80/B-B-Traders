@@ -37,7 +37,6 @@ export default function UserCRM() {
     });
   };
 
-
   useEffect(() => {
     const storedData = Cookies.get("data")
     const data = JSON.parse(storedData)
@@ -46,20 +45,21 @@ export default function UserCRM() {
 
   const referLink = 'https://bnbtraders.io/home/Register?REF=BB100000';
   return (
-    <div className="p-4 w-full">
-      <div className="flex flex-row  overflow-hidden ">
-        {/* Trading package card */}
-        <div className='flex flex-col gap-6 w-full'>
-          <div className=" w-[550px]  rounded-lg shadow-md  p-4 bg-white relative overflow-hidden">
+    <div className="p-2 md:p-4 w-full">
+      {/* Top Cards Section */}
+      <div className="flex flex-col lg:flex-row gap-4 overflow-hidden">
+        {/* Left Column - Trading Package and Income Cards */}
+        <div className='flex flex-col gap-4 w-full lg:w-1/2'>
+          {/* Trading package card */}
+          <div className="w-full rounded-lg shadow-md p-4 bg-white relative overflow-hidden">
             <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-[#0f626a] to-[#0f626a]"></div>
             <div className="flex flex-col gap-3">
-              <div className="flex items-center gap-2">
+              <div className="flex flex-col sm:flex-row items-center gap-2">
                 <div className="flex flex-col items-center justify-center bg-[#0f626a] rounded-md p-3">
                   <span className="font-medium text-white">Trading package</span>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 mt-2 sm:mt-0">
                   <div className="hidden lg:block min-h-[40px] w-[100px]">
-                    {/* Insert ApexCharts component here if using ApexCharts */}
                     <svg
                       width="100"
                       height="40"
@@ -90,7 +90,7 @@ export default function UserCRM() {
           </div>
 
           {/* Income and profit cards */}
-          <div className=" w-[550px] rounded-lg shadow-md bg-white relative overflow-hidden">
+          <div className="w-full rounded-lg shadow-md bg-white relative overflow-hidden">
             <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-green-500 to-green-600"></div>
             <div className="p-4">
               <div className="flex flex-col space-y-3 sm:space-y-0 sm:flex-row sm:gap-4">
@@ -105,7 +105,8 @@ export default function UserCRM() {
               </div>
             </div>
           </div>
-          <div className=" w-[550px] rounded-lg shadow-md bg-white relative overflow-hidden">
+          
+          <div className="w-full rounded-lg shadow-md bg-white relative overflow-hidden">
             <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-red-500 to-red-600"></div>
             <div className="p-4">
               <div className="flex flex-col space-y-3 sm:space-y-0 sm:flex-row sm:gap-4">
@@ -120,11 +121,10 @@ export default function UserCRM() {
               </div>
             </div>
           </div>
-
         </div>
-        {/* Referral card */}
-        <div className="relative bg-[#cfe0e1] rounded-lg p-4 max-h-[300px] w-[600px]  overflow-hidden">
 
+        {/* Right Column - Referral Card */}
+        <div className="relative bg-[#cfe0e1] rounded-lg p-4 h-full w-full lg:w-1/2 overflow-hidden">
           <Image
             alt="Background Vector"
             src="/bg-round.png"
@@ -149,7 +149,7 @@ export default function UserCRM() {
           />
 
           <div className="mt-4 flex flex-col items-center bg-[#ebf2f3] p-3 rounded-lg text-black font-bold">
-            <p className="text-sm break-words text-start mb-2">
+            <p className="text-sm break-words text-center mb-2">
               <Link href={referLink} target="_blank" rel="noopener noreferrer" className="underline">
                 {referLink}
               </Link>
@@ -180,92 +180,81 @@ export default function UserCRM() {
             </div>
           </div>
         </div>
-
       </div>
 
-      {/* Profit card */}
-      <div className="order-1 w-full mt-4 lg:order-1">
-        <div className="grid grid-cols-12 gap-4">
+      {/* Profit Cards Section */}
+      <div className="w-full mt-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
           {/* Card 1 */}
-          <div className="col-span-12 sm:col-span-3">
-            <div className="p-4 bg-white rounded shadow">
-              <div className="flex items-center justify-between">
-                <div className="bg-[#0f626a] text-white w-11 h-11 flex items-center justify-center rounded-full">
-                  <FaMoneyBill />
-                </div>
+          <div className="p-4 bg-white rounded shadow">
+            <div className="flex items-center justify-between">
+              <div className="bg-[#0f626a] text-white w-11 h-11 flex items-center justify-center rounded-full">
+                <FaMoneyBill />
               </div>
-              <div className="mt-3">
-                <h4 className="text-lg font-bold text-dark">$300300.00</h4>
-                <p className="font-medium text-black truncate">Income limit</p>
-              </div>
+            </div>
+            <div className="mt-3">
+              <h4 className="text-lg font-bold text-dark">$300300.00</h4>
+              <p className="font-medium text-black truncate">Income limit</p>
             </div>
           </div>
 
           {/* Card 2 */}
-          <div className="col-span-12 sm:col-span-2">
-            <div className="bg-[#0f626a] text-black rounded shadow p-4 flex flex-col items-center">
-              <div className="flex items-center justify-center w-12 h-12 bg-white rounded-full text-primary">
-                <FaHourglassHalf />
-              </div>
-              <div className="mt-3 text-center">
-                <h4 className="text-lg font-bold text-white">$0.00</h4>
-                <p className="font-medium text-white truncate">Pending limit</p>
-              </div>
+          <div className="bg-[#0f626a] text-black rounded shadow p-4 flex flex-col items-center">
+            <div className="flex items-center justify-center w-12 h-12 bg-white rounded-full text-primary">
+              <FaHourglassHalf />
+            </div>
+            <div className="mt-3 text-center">
+              <h4 className="text-lg font-bold text-white">$0.00</h4>
+              <p className="font-medium text-white truncate">Pending limit</p>
             </div>
           </div>
 
           {/* Card 3 */}
-          <div className="col-span-12 sm:col-span-2">
-            <div className="p-4 bg-white rounded shadow">
-              <div className="flex items-center justify-between">
-                <div className="bg-[#0f626a] text-white w-11 h-11 flex items-center justify-center rounded-full">
-                  <FaWallet />
-                </div>
+          <div className="p-4 bg-white rounded shadow">
+            <div className="flex items-center justify-between">
+              <div className="bg-[#0f626a] text-white w-11 h-11 flex items-center justify-center rounded-full">
+                <FaWallet />
               </div>
-              <div className="mt-3">
-                <h4 className="text-lg font-bold text-dark">$0.00</h4>
-                <p className="font-medium text-black truncate">Income Wallet Balance</p>
-              </div>
+            </div>
+            <div className="mt-3">
+              <h4 className="text-lg font-bold text-dark">$0.00</h4>
+              <p className="font-medium text-black truncate">Income Wallet Balance</p>
             </div>
           </div>
 
           {/* Card 4 */}
-          <div className="col-span-12 sm:col-span-3">
-            <div className="bg-[#0f626a] text-white rounded shadow p-4 flex flex-col items-center">
-              <div className="flex items-center justify-center w-12 h-12 bg-white rounded-full text-primary">
-                <FaMoneyBills className='text-black' />
-              </div>
-              <div className="mt-3 text-center">
-                <h4 className="text-lg font-bold text-white">$400000.00</h4>
-                <p className="font-medium truncate">Topup Wallet Balance</p>
-              </div>
+          <div className="bg-[#0f626a] text-white rounded shadow p-4 flex flex-col items-center">
+            <div className="flex items-center justify-center w-12 h-12 bg-white rounded-full text-primary">
+              <FaMoneyBills className='text-black' />
+            </div>
+            <div className="mt-3 text-center">
+              <h4 className="text-lg font-bold text-white">$400000.00</h4>
+              <p className="font-medium truncate">Topup Wallet Balance</p>
             </div>
           </div>
 
           {/* Card 5 */}
-          <div className="col-span-12 sm:col-span-2">
-            <div className="bg-[#0f626a] text-white rounded shadow p-4 flex flex-col items-center">
-              <div className="flex items-center justify-center w-12 h-12 bg-white rounded-full text-primary">
-                <FaMoneyBillTransfer className='text-black' />
-              </div>
-              <div className="mt-3 text-center">
-                <h4 className="text-lg font-bold text-white">$0.00</h4>
-                <p className="font-medium truncate">Withdrawal Fund</p>
-              </div>
+          <div className="bg-[#0f626a] text-white rounded shadow p-4 flex flex-col items-center">
+            <div className="flex items-center justify-center w-12 h-12 bg-white rounded-full text-primary">
+              <FaMoneyBillTransfer className='text-black' />
+            </div>
+            <div className="mt-3 text-center">
+              <h4 className="text-lg font-bold text-white">$0.00</h4>
+              <p className="font-medium truncate">Withdrawal Fund</p>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Personal Info  */}
-      <div className="flex justify-between gap-6 mt-8">
+      {/* Personal and Business Info Section */}
+      <div className="flex flex-col lg:flex-row justify-between gap-6 mt-8">
         {/* Personal Info */}
-        <div className="w-full md:w-1/2">
-          <div className="p-6 bg-white rounded-lg shadow-md">
+        <div className="w-full lg:w-1/2">
+          <div className="p-4 sm:p-6 bg-white rounded-lg shadow-md">
             <h6 className="mb-4 text-lg font-semibold text-gray-800">Personal Info</h6>
 
             {/* Status cards */}
-            <div className="flex gap-4 mb-6">
+            <div className="flex flex-col sm:flex-row gap-4 mb-6">
               {[
                 { label: 'Running', icon: <FaHourglassStart className="text-blue-500" />, bg: 'bg-[#0f626a]', count: '0' },
                 { label: 'Completed', icon: <FaCircleNotch className="text-green-500" />, bg: 'bg-[#0ab964]', count: '0' },
@@ -304,12 +293,12 @@ export default function UserCRM() {
         </div>
 
         {/* Business Info */}
-        <div className="w-full md:w-1/2">
-          <div className="p-6 bg-white rounded-lg shadow-md">
+        <div className="w-full lg:w-1/2">
+          <div className="p-4 sm:p-6 bg-white rounded-lg shadow-md">
             <h6 className="mb-4 text-lg font-semibold text-gray-800">Business Info</h6>
 
             {/* Status cards */}
-            <div className="flex gap-4 mb-6">
+            <div className="flex flex-col sm:flex-row gap-4 mb-6">
               {[
                 { label: 'Running', icon: <FaHourglassStart className="text-blue-500" />, bg: 'bg-[#0f626a]', count: '0' },
                 { label: 'Completed', icon: <FaCircleNotch className="text-green-500" />, bg: 'bg-[#0ab964]', count: '0' },
@@ -326,7 +315,7 @@ export default function UserCRM() {
             </div>
 
             {/* Business Details */}
-            <ul className="space-y-4 ">
+            <ul className="space-y-4">
               {[
                 { icon: <FaBriefcase className={`${iconClass} text-red-500`} />, label: 'Direct ID/Business', value: '0/0' },
                 { icon: <FaUserPlus className={`${iconClass} text-green-500`} />, label: 'Team Business', value: '0' },
@@ -346,7 +335,7 @@ export default function UserCRM() {
         </div>
       </div>
 
-      {/* Marketing Tools  */}
+      {/* Marketing Tools Section */}
       <div className="grid grid-cols-1 gap-4 my-4 xl:grid-cols-2">
         {/* FX Pricing Widget */}
         <div className="overflow-hidden bg-white shadow-md rounded-2xl">
@@ -378,4 +367,4 @@ export default function UserCRM() {
       </div>
     </div>
   );
-} 
+}

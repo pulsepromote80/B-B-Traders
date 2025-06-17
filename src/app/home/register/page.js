@@ -205,13 +205,11 @@ export default function Registration() {
   };
   return (
     <>
-      <div
-        className="flex items-center justify-center min-h-screen "
-        style={{
-          backgroundImage: "url('/login-banner1.webp')",
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-        }}
+     
+     
+     <div
+        className="flex items-center justify-center min-h-screen bg-gray-100 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: "url('/login-banner1.webp')" }}
       >
         {/* Modal */}
         {showModal && (
