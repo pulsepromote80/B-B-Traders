@@ -33,7 +33,7 @@ export default function Topbar() {
 
     return (
         <div className="flex items-center justify-between bg-white p-7 shadow-sm sticky top-0 z-10">
-            <div className="text-sm font-medium border-1 border-black-300 rounded-md p-2">User ID: <span className="font-bold">{loginId}</span></div>
+            <div className="text-sm font-medium border border-black rounded-md p-2">User ID: <span className="font-bold">{loginId}</span></div>
             <div className="flex items-center space-x-4">
                 <Image 
                     src={Notification} 
