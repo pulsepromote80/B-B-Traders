@@ -1,14 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaEye, FaEyeSlash, FaEnvelope, FaKey } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { appLogin } from "../redux/slices/authSlice";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { numberWords } from "@/utils/clientUtils";
-import { FaEnvelope, FaKey } from "react-icons/fa";
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -41,24 +40,18 @@ export default function Login() {
   const generateAudioCaptcha = (captcha) => {
     const speechSynthesis = window.speechSynthesis;
     const utterance = new SpeechSynthesisUtterance();
-    
-    const spokenText = captcha.split('').map(digit => numberWords[digit]).join(' ');
-    
+    const spokenText = captcha.split("").map((d) => numberWords[d]).join(" ");
     utterance.text = spokenText;
-    utterance.rate = 0.8; 
+    utterance.rate = 0.8;
     utterance.pitch = 1;
-    
-    setAudioCaptcha({
-      utterance,
-      speechSynthesis
-    });
+
+    setAudioCaptcha({ utterance, speechSynthesis });
   };
 
   const playAudioCaptcha = () => {
     if (!audioCaptcha) return;
-    
     const { utterance, speechSynthesis } = audioCaptcha;
-    speechSynthesis.cancel(); 
+    speechSynthesis.cancel();
     speechSynthesis.speak(utterance);
   };
 
@@ -67,9 +60,7 @@ export default function Login() {
     generateCaptcha();
   }, []);
 
-  if (!mounted) {
-    return null;
-  }
+  if (!mounted) return null;
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -97,10 +88,7 @@ export default function Login() {
     }
 
     if (errors) {
-      setModal({
-        show: true,
-        message: errors,
-      });
+      setModal({ show: true, message: errors });
       return false;
     }
 
@@ -109,31 +97,20 @@ export default function Login() {
         username: userInput.userid,
         password: userInput.password,
       };
-
       const result = await dispatch(appLogin(data)).unwrap();
       if (result.statusCode === 200) {
-        router.push("/user-crm")
+        router.push("/user-crm");
       } else if (result.statusCode === 409) {
-        setModal({
-          show: true,
-          message: result.message,
-        });
+        setModal({ show: true, message: result.message });
       }
-    } catch (error) {
-      setModal({
-        show: true,
-        message: "Login failed. Please try again.",
-      });
+    } catch {
+      setModal({ show: true, message: "Login failed. Please try again." });
     }
   };
 
   const hideModal = () => {
-    setModal({
-      show: false,
-      message: "",
-    });
+    setModal({ show: false, message: "" });
   };
-
 
   return (
     <>
@@ -163,6 +140,7 @@ export default function Login() {
           </div>
         </div>
       )}
+
       <div
         className="flex items-center justify-center min-h-screen bg-gray-100"
         style={{
@@ -215,8 +193,8 @@ export default function Login() {
                 )}
               </div>
             </div>
-            <div className="flex items-center gap-4 mb-4">
 
+            <div className="flex items-center gap-4 mb-4">
               <input
                 className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 name="captcha"
@@ -225,30 +203,12 @@ export default function Login() {
                 value={userInput.captcha}
                 onChange={handleInputChange}
               />
-
-              <div className="flex items-center justify-center w-32 h-12 bg-gray-100 rounded-md relative overflow-hidden">
+              <div className="relative flex items-center justify-center w-32 h-12 bg-gray-100 rounded-md">
                 <div className="absolute inset-0 bg-[url('/cross-pattern.svg')] opacity-40"></div>
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gray-200 to-transparent opacity-20"></div>
                 <span className="text-2xl font-bold tracking-wider text-gray-800 relative z-10">
                   {captchaValue}
                 </span>
-            <div className="grid items-end grid-cols-1 gap-2 md:grid-cols-7">
-              <div className="md:col-span-4">
-                <input
-                  type="text"
-                  placeholder="Enter Captcha"
-                  className="w-full px-4 py-3 text-black border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  name="captchaInput"
-                  value={userInput.captchaInput}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div className="md:col-span-3">
-                <div
-                  className="flex items-center justify-center px-4 py-2 text-xl font-bold text-black bg-transparent border border-gray-300 rounded select-none"
-                >
-                  {captcha}
-                </div>
               </div>
               <button
                 type="button"
@@ -276,14 +236,11 @@ export default function Login() {
                   checked={userInput.rememberMe}
                   onChange={handleInputChange}
                 />
-                <label
-                  htmlFor="rememberMe"
-                  className="text-black whitespace-nowrap"
-                >
+                <label htmlFor="rememberMe" className="text-black whitespace-nowrap">
                   Remember me
                 </label>
               </div>
-              <a href="/home/forgot-password" className="text-black ">
+              <a href="/home/forgot-password" className="text-black">
                 Forget Password?
               </a>
             </div>
@@ -296,7 +253,8 @@ export default function Login() {
             </button>
 
             <div className="text-center text-black">
-              Don't have an account yet? <br></br>
+              Don't have an account yet?
+              <br />
               <a
                 href="/home/register"
                 className="font-bold text-black hover:underline"
